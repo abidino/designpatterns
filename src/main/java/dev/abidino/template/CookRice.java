@@ -2,7 +2,7 @@ package dev.abidino.template;
 
 public abstract class CookRice {
 
-    void cook() {
+    public final void cook() {
         addWater();
         addRice();
         heat();
