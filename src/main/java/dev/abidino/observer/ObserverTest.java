@@ -9,8 +9,8 @@ public class ObserverTest {
         MomPublisher momPublisher = new MomPublisher("Tomato paste bread is ready");
         Abidino abidino = new Abidino();
         Immino immino = new Immino();
-        momPublisher.addSubscriber(abidino);
-        momPublisher.addSubscriber(immino);
+        abidino.subscribe(momPublisher);
+        immino.subscribe(momPublisher);
         momPublisher.publish();
     }
 }

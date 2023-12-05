@@ -7,4 +7,9 @@ public class Abidino implements Subscriber {
     public void receive(Publisher publisher) {
         System.out.println("abidino receive a new message :  " + publisher.getMessage());
     }
+
+    @Override
+    public void subscribe(Publisher publisher) {
+        publisher.addSubscriber(this);
+    }
 }
