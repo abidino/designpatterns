@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 
 public abstract class AbstractPublisher implements Publisher {
     protected List<Subscriber> subscriberList = new ArrayList<>();
+    private final List<String> messageList = new ArrayList<>();
 
     @Override
     public void addSubscriber(Subscriber subscriber) {
@@ -21,10 +22,11 @@ public abstract class AbstractPublisher implements Publisher {
     }
 
     @Override
-    public void publish() {
+    public void publish(String message) {
+        messageList.add(message);
         try (ExecutorService executorService = Executors.newCachedThreadPool()) {
             for (Subscriber subscriber : subscriberList) {
-                executorService.submit(() -> subscriber.receive(this));
+                executorService.submit(() -> subscriber.receive(message));
             }
         }
     }
